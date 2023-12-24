@@ -1,11 +1,7 @@
-# About
-- Flow Reader is a pdf reader that allows you to iteratively read books, iteratively write notes, iteratively write anki flash cards.
+# Tauri + Preact + Typescript
 
-# Features
-- [ ] VI key-bindings
-- [ ] Link note(edited highlighted section) to anki notes
-  - [ ] sync note and anki notes
-- [ ] Reading que(automatically chose which book to be read based on the priority and time passed since last read)
-- [ ] Note que (same as above, just for notes)
-- [ ] Save notes as Markdown files so they can be edited in a Obsidian and allow easy synchronization
-- [ ] Dark mode
+This template should help get you started developing with Tauri, Preact and Typescript in Vite.
+
+## Recommended IDE Setup
+
+- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)

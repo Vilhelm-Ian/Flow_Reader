@@ -1,0 +1,86 @@
+ci: # the pre-commit ci bot on github does not like repo: local
+    skip: [pylint, black, mypy]
+    autofix_prs: false
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--enforce-all']
+      - id: check-case-conflict
+      - id: check-json
+      - id: pretty-format-json
+        args: ['--autofix']
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: debug-statements
+      - id: name-tests-test
+        files: '^tests/'
+        exclude: |
+          (?x)^(
+              tests/data/.*|
+              tests/fake_config.py|
+              tests/fake_preferences.py|
+          )$
+      - id: requirements-txt-fixer
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-check-blanket-type-ignore
+      - id: python-use-type-annotations
+      - id: python-check-mock-methods
+  - repo: https://github.com/pappasam/toml-sort
+    rev: v0.23.1
+    hooks:
+      - id: toml-sort-fix
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.0
+    hooks:
+      - id: pyupgrade
+        args: [--py39-plus]
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort (python)
+  - repo: local
+    hooks:
+      - id: pylint
+        name: pylint
+        entry: pylint
+        language: system
+        require_serial: true
+        types: [ python ]
+      - id: black
+        name: black
+        entry: black
+        language: system
+        types: [ python ]
+      - id: mypy
+        name: mypy
+        entry: mypy
+        language: system
+        types: [ python ]
+        files: 'ankimorphs/|^tests/'
+        exclude: |
+          (?x)^(
+              ankimorphs/deps/.*|
+              ankimorphs/ui/.*|
+              ankimorphs/mecab_wrapper.py|
+              ankimorphs/morpheme.py|
+              ankimorphs/morphemizer.py|
+              ankimorphs/old_recalc.py|
+              ankimorphs/text_utils.py|
+              ankimorphs/util_external.py|
+              tests/.*|
+          )$
+#      - id: pytest
+#        name: pytest
+#        entry: pytest
+#        language: system
+#        pass_filenames: false
+#        always_run: true
